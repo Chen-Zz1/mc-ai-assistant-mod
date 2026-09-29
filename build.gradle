@@ -1,0 +1,86 @@
+plugins {
+    id 'net.fabricmc.fabric-loom' version "${loom_version}"
+}
+
+version = project.mod_version
+group = project.maven_group
+
+base {
+    archivesName = project.archives_base_name
+}
+
+loom {
+    serverOnlyMinecraftJar()
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+}
+
+def modVersion = project.version
+processResources {
+    inputs.property 'version', modVersion
+    filesMatching('fabric.mod.json') {
+        expand 'version': modVersion
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.release = 25
+    options.encoding = 'UTF-8'
+}
+
+java {
+    withSourcesJar()
+    sourceCompatibility = JavaVersion.VERSION_25
+    targetCompatibility = JavaVersion.VERSION_25
+}
+
+tasks.register('selfCheck', JavaExec) {
+    group = 'verification'
+    description = 'Runs dependency-free core behavior checks.'
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'dev.mcai.assistant.CoreSelfCheck'
+}
+
+tasks.named('test') {
+    dependsOn selfCheck
+    // CoreSelfCheck is the project's dependency-free test suite, not a JUnit test class.
+    exclude '**/*'
+}
+
+check.dependsOn selfCheck
+
+tasks.register('wikiSmoke', JavaExec) {
+    group = 'verification'
+    description = 'Opt-in public Minecraft Wiki search/fetch/cache check; no model requests.'
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'dev.mcai.assistant.WikiSelfCheck'
+}
+
+tasks.register('wikiEvaluation', JavaExec) {
+    group = 'verification'
+    description = 'Opt-in public Wiki retrieval evaluation; no model requests or credentials.'
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'dev.mcai.assistant.WikiEvaluation'
+}
+
+tasks.withType(AbstractArchiveTask).configureEach {
+    preserveFileTimestamps = false
+    reproducibleFileOrder = true
+}
+
+tasks.named('jar') {
+    from('LICENSE')
+    from('THIRD_PARTY_NOTICES.md')
+}
+
+tasks.named('sourcesJar') {
+    from('LICENSE')
+    from('THIRD_PARTY_NOTICES.md')
+}

@@ -1,0 +1,399 @@
+{
+  "provenance": "Manually authored public gameplay questions. English topics/keywords and context resolution are supplied by the evaluator, not a model. Expected page revisions and relevant prose/empty sections were manually inspected against the frozen public-API snapshot on 2026-09-08. No generated answer is used as ground truth.",
+  "examples": [
+    {
+      "id": "W01",
+      "category": "diamond_usage",
+      "question": "钻石有什么用？",
+      "context": "",
+      "query": {
+        "topic": "Diamond",
+        "keywords": "diamond usage crafting trading",
+        "edition": "java",
+        "version": "26.2",
+        "history": false
+      },
+      "expectedTitle": "Diamond",
+      "expectedSections": [
+        "Usage"
+      ],
+      "verifiedRevision": 3754928,
+      "evidenceTerms": [
+        "diamond"
+      ],
+      "expectedBehavior": "ANSWER_WITH_EVIDENCE",
+      "expectationNote": "Only describe uses supported by the selected prose; do not infer a crafting grid."
+    },
+    {
+      "id": "W02",
+      "category": "diamond_synonym",
+      "question": "挖到的钻石能拿去跟村民交易吗？",
+      "context": "",
+      "query": {
+        "topic": "Diamond",
+        "keywords": "diamond trading villagers emerald",
+        "edition": "java",
+        "version": "26.2",
+        "history": false
+      },
+      "expectedTitle": "Diamond",
+      "expectedSections": [
+        "Usage > Trading"
+      ],
+      "verifiedRevision": 3754928,
+      "evidenceTerms": [
+        "villager"
+      ],
+      "expectedBehavior": "INSUFFICIENT_TRADING_TABLE",
+      "expectationNote": "Manually inspected revision 3754928: Usage > Trading is an empty heading in TextExtracts. Do not infer trades or counts from model memory. This case checks an evidence gap, not model refusal."
+    },
+    {
+      "id": "W03",
+      "category": "ore_height",
+      "question": "钻石矿石在什么高度生成？",
+      "context": "",
+      "query": {
+        "topic": "Diamond Ore",
+        "keywords": "diamond ore natural generation height level",
+        "edition": "java",
+        "version": "26.2",
+        "history": false
+      },
+      "expectedTitle": "Diamond Ore",
+      "expectedSections": [
+        "Obtaining > Natural generation"
+      ],
+      "verifiedRevision": 3759463,
+      "evidenceTerms": [
+        "generate"
+      ],
+      "expectedBehavior": "ANSWER_WITH_EVIDENCE",
+      "expectationNote": "Use only height ranges actually present in this revision; this is not a frozen Java 26.2 snapshot."
+    },
+    {
+      "id": "W04",
+      "category": "ore_context",
+      "question": "那它在深板岩层也有吗？",
+      "context": "上一问：钻石矿石在哪里生成？",
+      "query": {
+        "topic": "Diamond Ore",
+        "keywords": "diamond ore deepslate generation",
+        "edition": "java",
+        "version": "26.2",
+        "history": false
+      },
+      "expectedTitle": "Diamond Ore",
+      "expectedSections": [
+        "Obtaining > Natural generation",
+        "Overview"
+      ],
+      "verifiedRevision": 3759463,
+      "evidenceTerms": [
+        "deepslate"
+      ],
+      "expectedBehavior": "ANSWER_WITH_EVIDENCE",
+      "expectationNote": "The evaluator manually resolves it to Diamond Ore; this does not test model coreference."
+    },
+    {
+      "id": "W05",
+      "category": "zombie_cure",
+      "question": "僵尸村民怎么治愈？",
+      "context": "",
+      "query": {
+        "topic": "Zombie Villager",
+        "keywords": "zombie villager curing weakness golden apple",
+        "edition": "java",
+        "version": "26.2",
+        "history": false
+      },
+      "expectedTitle": "Zombie Villager",
+      "expectedSections": [
+        "Behavior > Curing"
+      ],
+      "verifiedRevision": 3759172,
+      "evidenceTerms": [
+        "weakness",
+        "golden apple"
+      ],
+      "expectedBehavior": "ANSWER_WITH_EVIDENCE",
+      "expectationNote": "Preserve the weakness and ordinary golden-apple requirements from the source."
+    },
+    {
+      "id": "W06",
+      "category": "zombie_synonym",
+      "question": "怎么把村民僵尸变回村民？",
+      "context": "",
+      "query": {
+        "topic": "Zombie Villager",
+        "keywords": "zombie villager curing weakness golden apple",
+        "edition": "java",
+        "version": "26.2",
+        "history": false
+      },
+      "expectedTitle": "Zombie Villager",
+      "expectedSections": [
+        "Behavior > Curing"
+      ],
+      "verifiedRevision": 3759172,
+      "evidenceTerms": [
+        "weakness",
+        "golden apple"
+      ],
+      "expectedBehavior": "ANSWER_WITH_EVIDENCE",
+      "expectationNote": "Chinese synonym manually normalized; no model rewrite accuracy claim."
+    },
+    {
+      "id": "W07",
+      "category": "zombie_context",
+      "question": "治好它大概需要多久？",
+      "context": "上一问：如何治愈僵尸村民？",
+      "query": {
+        "topic": "Zombie Villager",
+        "keywords": "zombie villager curing time minutes Java",
+        "edition": "java",
+        "version": "26.2",
+        "history": false
+      },
+      "expectedTitle": "Zombie Villager",
+      "expectedSections": [
+        "Behavior > Curing"
+      ],
+      "verifiedRevision": 3759172,
+      "evidenceTerms": [
+        "minute"
+      ],
+      "expectedBehavior": "ANSWER_WITH_EVIDENCE",
+      "expectationNote": "Context is manually resolved; duration must be checked against the edition-specific prose."
+    },
+    {
+      "id": "W08",
+      "category": "reported_failure",
+      "question": "怎么寻找女巫小屋？",
+      "context": "",
+      "query": {
+        "topic": "Witch Hut",
+        "keywords": "witch hut finding generation swamp",
+        "edition": "java",
+        "version": "26.2",
+        "history": false
+      },
+      "expectedTitle": "Swamp Hut",
+      "expectedSections": [
+        "Generation"
+      ],
+      "verifiedRevision": 3754145,
+      "evidenceTerms": [
+        "swamp",
+        "generate"
+      ],
+      "expectedBehavior": "ANSWER_WITH_EVIDENCE",
+      "expectationNote": "Witch Hut must be accepted only if the public API confirms a redirect to Swamp Hut; historical model rewrite is unknown."
+    },
+    {
+      "id": "W09",
+      "category": "reported_failure_synonym",
+      "question": "怎么找女巫小屋？",
+      "context": "",
+      "query": {
+        "topic": "Witch Hut",
+        "keywords": "witch hut locating generation biome",
+        "edition": "java",
+        "version": "26.2",
+        "history": false
+      },
+      "expectedTitle": "Swamp Hut",
+      "expectedSections": [
+        "Generation"
+      ],
+      "verifiedRevision": 3754145,
+      "evidenceTerms": [
+        "swamp",
+        "generate"
+      ],
+      "expectedBehavior": "ANSWER_WITH_EVIDENCE",
+      "expectationNote": "Second reported question, with the same explicitly assumed rewrite hypothesis."
+    },
+    {
+      "id": "W10",
+      "category": "chinese_alias",
+      "question": "沼泽小屋是不是只在普通沼泽里生成？",
+      "context": "",
+      "query": {
+        "topic": "Swamp Hut",
+        "keywords": "swamp hut generation mangrove",
+        "edition": "java",
+        "version": "26.2",
+        "history": false
+      },
+      "expectedTitle": "Swamp Hut",
+      "expectedSections": [
+        "Generation"
+      ],
+      "verifiedRevision": 3754145,
+      "evidenceTerms": [
+        "mangrove"
+      ],
+      "expectedBehavior": "ANSWER_WITH_EVIDENCE",
+      "expectationNote": "The Chinese name is manually mapped to the canonical title; check the mangrove exception in the prose."
+    },
+    {
+      "id": "W11",
+      "category": "edition_mixed_page",
+      "question": "基岩版女巫小屋重新刷女巫的位置在哪里？",
+      "context": "",
+      "query": {
+        "topic": "Swamp Hut",
+        "keywords": "swamp hut Bedrock Edition witches respawn block crafting table",
+        "edition": "bedrock",
+        "version": "26.2",
+        "history": false
+      },
+      "expectedTitle": "Swamp Hut",
+      "expectedSections": [
+        "Mobs"
+      ],
+      "verifiedRevision": 3754145,
+      "evidenceTerms": [
+        "bedrock",
+        "block"
+      ],
+      "expectedBehavior": "ANSWER_WITH_EVIDENCE",
+      "expectationNote": "The page mixes editions in its prose; a selected mixed section does not prove sentence-level edition filtering."
+    },
+    {
+      "id": "W12",
+      "category": "enchanting",
+      "question": "附魔台需要青金石和经验吗？",
+      "context": "",
+      "query": {
+        "topic": "Enchanting Table",
+        "keywords": "enchanting table usage lapis lazuli experience",
+        "edition": "java",
+        "version": "26.2",
+        "history": false
+      },
+      "expectedTitle": "Enchanting Table",
+      "expectedSections": [
+        "Usage"
+      ],
+      "verifiedRevision": 3752294,
+      "evidenceTerms": [
+        "lapis",
+        "experience"
+      ],
+      "expectedBehavior": "ANSWER_WITH_EVIDENCE",
+      "expectationNote": "Check the Usage prose rather than infer costs from a GUI image."
+    },
+    {
+      "id": "W13",
+      "category": "recipe_missing",
+      "question": "附魔台的九宫格配方每格具体放什么？",
+      "context": "",
+      "query": {
+        "topic": "Enchanting Table",
+        "keywords": "enchanting table crafting recipe ingredients arrangement",
+        "edition": "java",
+        "version": "26.2",
+        "history": false
+      },
+      "expectedTitle": "Enchanting Table",
+      "expectedSections": [
+        "Obtaining > Crafting"
+      ],
+      "verifiedRevision": 3752294,
+      "evidenceTerms": [],
+      "expectedBehavior": "INSUFFICIENT_CRAFTING_GRID",
+      "expectationNote": "Manually inspected revision 3752294: Obtaining > Crafting is an empty heading in TextExtracts; neither ingredients nor grid positions are present. This case checks the missing grid, not model refusal."
+    },
+    {
+      "id": "W14",
+      "category": "edition_filter_negative",
+      "question": "Java 1.18 的地形变化是什么？",
+      "context": "过滤负例：故意给出错误版别的候选主题。",
+      "query": {
+        "topic": "Bedrock Edition 1.18.0",
+        "keywords": "terrain generation caves cliffs",
+        "edition": "java",
+        "version": "1.18",
+        "history": true
+      },
+      "expectedTitle": "Bedrock Edition 1.18.0",
+      "expectedSections": [
+        "Overview"
+      ],
+      "verifiedRevision": 3678024,
+      "evidenceTerms": [],
+      "expectedBehavior": "EDITION_FILTERED",
+      "expectationNote": "Injected wrong-edition candidate must be rejected; this is a filter test, not a natural rewrite expectation."
+    },
+    {
+      "id": "W15",
+      "category": "edition_positive",
+      "question": "基岩版 1.18.0 的更新主题是什么？",
+      "context": "",
+      "query": {
+        "topic": "Bedrock Edition 1.18.0",
+        "keywords": "Caves Cliffs update release",
+        "edition": "bedrock",
+        "version": "1.18.0",
+        "history": true
+      },
+      "expectedTitle": "Bedrock Edition 1.18.0",
+      "expectedSections": [
+        "Overview"
+      ],
+      "verifiedRevision": 3678024,
+      "evidenceTerms": [
+        "caves",
+        "cliffs"
+      ],
+      "expectedBehavior": "ANSWER_WITH_EVIDENCE",
+      "expectationNote": "The exact release page is appropriate only for Bedrock 1.18.0."
+    },
+    {
+      "id": "W16",
+      "category": "version_filter_negative",
+      "question": "Java 26.2 的更新内容是什么？",
+      "context": "过滤负例：故意给出旧版本候选主题。",
+      "query": {
+        "topic": "Java Edition 1.18",
+        "keywords": "Caves Cliffs update",
+        "edition": "java",
+        "version": "26.2",
+        "history": true
+      },
+      "expectedTitle": "Java Edition 1.18",
+      "expectedSections": [
+        "Overview"
+      ],
+      "verifiedRevision": 3713468,
+      "evidenceTerms": [],
+      "expectedBehavior": "VERSION_FILTERED",
+      "expectationNote": "An explicit old release page cannot substantiate the requested current release."
+    },
+    {
+      "id": "W17",
+      "category": "version_positive",
+      "question": "Java 1.18 的更新主题是什么？",
+      "context": "",
+      "query": {
+        "topic": "Java Edition 1.18",
+        "keywords": "Caves Cliffs update release",
+        "edition": "java",
+        "version": "1.18",
+        "history": true
+      },
+      "expectedTitle": "Java Edition 1.18",
+      "expectedSections": [
+        "Overview"
+      ],
+      "verifiedRevision": 3713468,
+      "evidenceTerms": [
+        "caves",
+        "cliffs"
+      ],
+      "expectedBehavior": "ANSWER_WITH_EVIDENCE",
+      "expectationNote": "A matched historical release remains eligible, without pretending it describes Java 26.2."
+    }
+  ]
+}
