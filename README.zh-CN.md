@@ -1,5 +1,7 @@
 # Minecraft AI Assistant
 
+[下载预发布版](https://github.com/Chen-Zz1/mc-ai-assistant-mod/releases) · [自动构建状态](https://github.com/Chen-Zz1/mc-ai-assistant-mod/actions/workflows/build.yml)
+
 这是一个服务端 Fabric 模组，提供普通聊天、多轮对话、可配置角色，以及可选的网页和 Minecraft Wiki 检索。玩家可使用原版客户端进入服务器。服主自行配置模型 API 并承担费用；项目不提供共享密钥或托管服务。
 
 支持目标为 Minecraft Java 26.2、Java 25、Fabric Loader 0.19.3、Fabric API 0.158.0+26.2，当前游戏提示为中文。其他版本和加载器尚未验证。AI 只生成文字，不能执行服务器命令或修改世界。
@@ -23,6 +25,6 @@
 - 默认每日配额是全服外部请求次数，不是每人聊天轮数。一次检索、重试或模型降级可能消耗多次额度，也可能产生费用。
 - 仅提供[虚构角色示例](docs/PERSONAS.md)，不提供真人资料、聊天导出、私人提示词、运行日志和评测网站。
 - Wiki 功能仍属实验性能力；接口可用性和答案准确性不作保证。
-- 当前候选版仍待一次真实双玩家验收；参见[发布验收清单](docs/RELEASE_CHECKLIST.md)，不要将自动测试当作完整游戏验收。
+- 初始公开源码已通过本地测试与 GitHub Linux CI；当前预发布版仍待一次真实双玩家验收。参见[发布验收清单](docs/RELEASE_CHECKLIST.md)，不要将自动测试当作完整游戏验收。
 
 使用 Java 25 执行 `gradlew.bat --no-daemon check build` 可构建。项目准备以 MIT 公开，第三方组件保留各自许可。代码和文档开发大量使用了 AI，详见 [AI_DISCLOSURE.md](AI_DISCLOSURE.md)。

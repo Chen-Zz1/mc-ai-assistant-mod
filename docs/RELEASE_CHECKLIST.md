@@ -1,8 +1,10 @@
 # Release validation
 
-Prepared candidate: `0.2.0-beta.1` for Minecraft 26.2. This file records the remaining acceptance procedure; it does not assert that a public release exists.
+Candidate: `0.2.0-beta.1` for Minecraft 26.2, intended for prerelease testing. This file records verification boundaries and the remaining manual acceptance procedure.
 
 ## Automated checks
+
+The initial public source import passed local checks and [GitHub CI on Linux](https://github.com/Chen-Zz1/mc-ai-assistant-mod/actions/runs/36518971066). The packaged JAR also initialized in a fresh local Fabric runtime with a keyless config, then stopped at the unaccepted EULA gate. This verifies bootstrap behavior, not a running multiplayer session.
 
 Run `./gradlew --no-daemon check build` using Java 25. `selfCheck` executes the actual dependency-free test suite; Gradle's ordinary JUnit `test` task can report NO-SOURCE. Coverage includes local mock transport, retries/fallback, budgets, timeouts/cancellation, conversation separation, persona parsing/reload, source validation, Wiki caching/fallback and privacy defaults. These checks do not make paid requests.
 

@@ -1,6 +1,8 @@
 # Minecraft AI Assistant
 
-[中文说明](README.zh-CN.md) · [Configuration](docs/CONFIGURATION.md) · [Privacy](docs/PRIVACY.md)
+[中文说明](README.zh-CN.md) · [Downloads](https://github.com/Chen-Zz1/mc-ai-assistant-mod/releases) · [Configuration](docs/CONFIGURATION.md) · [Privacy](docs/PRIVACY.md)
+
+[![Build and self-check](https://github.com/Chen-Zz1/mc-ai-assistant-mod/actions/workflows/build.yml/badge.svg)](https://github.com/Chen-Zz1/mc-ai-assistant-mod/actions/workflows/build.yml)
 
 A server-side Fabric mod for AI chat, fictional character conversations and optional web/Minecraft Wiki retrieval. Players can join with vanilla clients. Server operators supply and pay for their own API services; no shared key or hosted service is included.
 
@@ -43,7 +45,7 @@ Initial ordinary replies are **public**; use `/ai settings private` to change yo
 
 With JDK 25: `./gradlew --no-daemon check build` (Windows: `gradlew.bat --no-daemon check build`). The core self-check suite uses local mock HTTP servers and synthetic data; no paid API calls are needed. Dependency downloads still require network access. See [Contributing](CONTRIBUTING.md) and [release validation](docs/RELEASE_CHECKLIST.md).
 
-This public candidate has automated coverage, but a fresh two-player in-game acceptance run remains pending. Treat it as a beta; review [known limitations](docs/KNOWN_LIMITATIONS.md). No real-person chat exports, private persona packs, operational credentials, production logs or evaluation website are distributed.
+The initial public source import passed local self-checks and [GitHub CI on Linux](https://github.com/Chen-Zz1/mc-ai-assistant-mod/actions/runs/36518971066), but a fresh two-player in-game acceptance run remains pending. Treat this as a prerelease for testing; review [known limitations](docs/KNOWN_LIMITATIONS.md). No real-person chat exports, private persona packs, operational credentials, production logs or evaluation website are distributed.
 
 ## License and disclosure
 
